@@ -1,0 +1,18 @@
+#from hello import Employee
+
+from employ import Employee
+import unittest
+
+class TestEmployee(unittest.TestCase):
+    """使用方法setUp() ，以免在每个测试方法中都创建新的雇员实例"""
+    def setUp(self):
+        self.people = Employee("ZHU","Fangya",20000)
+        self.result = [25000, 30000]
+    def test_give_default_raise(self):
+        self.people.give_raise()
+        self.assertEqual(self.result[0],self.people.give_raise())
+    def test_give_custom_raise(self):
+        self.assertEqual(self.result[1],self.people.give_raise(default=10000))
+
+if __name__ == "__main__":
+    unittest.main()
